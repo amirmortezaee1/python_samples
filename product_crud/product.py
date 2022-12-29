@@ -32,12 +32,14 @@ class Product():
         return self.__repr__()
 
     #this method shall be able read a product via id/uuid or ... from the the product datastructure (dictionary,list or maybe database)
-    def read(self):
-        pass
+    def read(self,id):
+        for value,key in self._product_list.items():
+            if value==id:
+                return key
 
     #this method shall be able to update product and amend the data structure for related product
     def update(self):
-        pass
+        self._product_list[self].update(self.create())
 
     #this method shall be able to remove the product
     def delete(self):
@@ -46,8 +48,8 @@ class Product():
     #shall I get all products with staticmethod ? any better solution ? what about a class method ?
     # what is the diffrence ?
     # shall I seprate the datastructe from the class ? why? who? any better solution?
-    @staticmethod
-    def list_all():
+    #@staticmethod
+    def list_all(self):
         return tuple(Product._product_list.keys())
 
 
