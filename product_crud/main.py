@@ -44,7 +44,7 @@ def main():
  
     product_one.create()
     product_two.create()
-    #del product_two
+    del product_two
 
     for p in product_one.list_all():
         print(p)
