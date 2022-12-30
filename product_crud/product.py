@@ -25,15 +25,19 @@ class Product():
         self.is_visible = is_visible
         self.date_created_gmt = date_created_gmt
         self.date_modified_gmt = date_modified_gmt
-       
-
-    def create(self):
-        self._product_list[self] = self.id
+    
+    def create(self, id):
+        self._product_list[id] = self
         return self.__repr__()
 
     #this method shall be able read a product via id/uuid or ... from the the product datastructure (dictionary,list or maybe database)
-    def read(self):
-        pass
+    # change instance method to class method
+    @classmethod
+    def read(cls, id): 
+        for i in Product._product_list:
+            if i == id:
+                return Product._product_list[i]
+        print("id not found")
 
     #this method shall be able to update product and amend the data structure for related product
     def update(self):
@@ -48,6 +52,10 @@ class Product():
     # shall I seprate the datastructe from the class ? why? who? any better solution?
     @staticmethod
     def list_all():
+        return tuple(Product._product_list.values())
+
+    @staticmethod
+    def list_all_id():
         return tuple(Product._product_list.keys())
 
 
@@ -70,4 +78,3 @@ class Product():
         Date Created: {datetime.utcfromtimestamp(self.date_created_gmt).strftime('%Y-%m-%d %H:%M:%S')} \n\
         Date Modified: {datetime.utcfromtimestamp(self.date_modified_gmt).strftime('%Y-%m-%d %H:%M:%S')} \n\
         "
-       

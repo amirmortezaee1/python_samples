@@ -26,7 +26,6 @@ def main():
         current_unixtimestamp,
         1)
 
-
     product_two = Product('Lenovo T530',
         'Lenovo 530',
         'some long descrition',
@@ -42,22 +41,21 @@ def main():
         current_unixtimestamp,
         1)
  
-    product_one.create()
-    product_two.create()
+    product_one.create("1")
+    product_two.create("2")
 
+    # delete instance of products 
+    del product_one
+    del product_two
 
-    for p in product_one.list_all():
+    print("--------------------------------------")
+    Product.read("1")
+
+    # change instance methode to class method 
+    for p in Product.list_all():
         print(p)
 
-    print("-------------------------------------")
-    print("Does Product one instance of <<Circle>> class?")
-    print(isinstance(product_one, Circle))
-    print("Does Product one instance of <<Product>> class?")
-    print(isinstance(product_one, Product))
 
 if __name__ == '__main__':
     # This code won't run if this file is imported.
     main()
-
-
-
