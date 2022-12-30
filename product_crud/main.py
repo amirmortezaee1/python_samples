@@ -42,22 +42,37 @@ def main():
         current_unixtimestamp,
         1)
  
-    product_one.create()
-    product_two.create()
+    product_one.create(1000)
+    product_two.create(1001)
 
 
-    for p in product_one.list_all():
-        print(p)
-
+    # product_one.delete(1000)
+    
+    print(Product.read(1000))
+    
+    
     print("-------------------------------------")
     print("Does Product one instance of <<Circle>> class?")
     print(isinstance(product_one, Circle))
     print("Does Product one instance of <<Product>> class?")
     print(isinstance(product_one, Product))
 
+    # del product_one
+    # del product_two
+    
+    print(Product._product_list)
+    
+    
+    for p in Product.list_all():
+        print(p)
+        
+    
+    product_one.update({'title': 'lenovo 330'})
+    
+    print(Product.read(1000))
+
 if __name__ == '__main__':
     # This code won't run if this file is imported.
     main()
-
 
 

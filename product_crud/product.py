@@ -2,7 +2,8 @@ from datetime import datetime
 
 class Product():
 
-    _product_list = {}
+    _product_list = []
+    
 
     def __init__(self, title:str, short_description:str , description:str  , slug:str, permalink:str, sku:str, price:float, regular_price:float,
                  sale_price:float, manage_stock:bool, stock_quantity:int, date_created_gmt :int, date_modified_gmt:int,category_id:int = 0, 
@@ -27,28 +28,44 @@ class Product():
         self.date_modified_gmt = date_modified_gmt
        
 
-    def create(self):
-        self._product_list[self] = self.id
+    def create(self, id:int):
+        self.id = id
+        product = {'id': self.id, 'product':self}
+        self._product_list.append(product)
         return self.__repr__()
 
-    #this method shall be able read a product via id/uuid or ... from the the product datastructure (dictionary,list or maybe database)
-    def read(self):
-        pass
+    
+    
+    @classmethod
+    def read(cls, id:int):
+        for i in cls._product_list:
+            if i['id'] == id:
+                return i['product'].__repr__()
+        return f"this id '{id}' does not exist"
 
-    #this method shall be able to update product and amend the data structure for related product
-    def update(self):
-        pass
+    
+    def update(self, new_attr):
+        for key, value in new_attr.items():
+            if key in self.__dict__:
+                setattr(self, key, value) 
+            
+                 
 
-    #this method shall be able to remove the product
-    def delete(self):
-        pass
+    
+    @classmethod
+    def delete(cls, id):
+        for i in cls._product_list:
+            if i['id'] == id:
+                cls._product_list.remove(i)
+                return 'Done'
 
-    #shall I get all products with staticmethod ? any better solution ? what about a class method ?
-    # what is the diffrence ?
-    # shall I seprate the datastructe from the class ? why? who? any better solution?
-    @staticmethod
-    def list_all():
-        return tuple(Product._product_list.keys())
+
+    @classmethod
+    def list_all(cls):
+        return tuple(cls._product_list)
+    
+    def __del__(self):
+        pass
 
 
     def __repr__(self) -> str:
