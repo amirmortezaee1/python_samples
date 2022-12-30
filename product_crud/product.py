@@ -40,8 +40,12 @@ class Product():
         print("id not found")
 
     #this method shall be able to update product and amend the data structure for related product
-    def update(self):
-        pass
+    @classmethod
+    def update(cls, id, updated_values):
+        for key in list(Product._product_list.keys()):
+            if key == id:
+                Product._product_list[id] = updated_values
+        print(Product._product_list)
 
     #this method shall be able to remove the product
     @classmethod
