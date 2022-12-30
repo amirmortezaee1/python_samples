@@ -44,8 +44,12 @@ class Product():
         pass
 
     #this method shall be able to remove the product
-    def delete(self):
-        pass
+    @classmethod
+    def delete(cls, id):
+        for key in list(Product._product_list.keys()):
+            if key == id:
+                del Product._product_list[id]
+        print(Product._product_list)
 
     #shall I get all products with staticmethod ? any better solution ? what about a class method ?
     # what is the diffrence ?

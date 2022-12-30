@@ -44,17 +44,20 @@ def main():
     product_one.create("1")
     product_two.create("2")
 
-    # delete instance of products 
+    # delete items of products 
     del product_one
     del product_two
 
-    print("--------------------------------------")
-    Product.read("1")
+    # read items by id 
+    print(Product.read("2"))
 
+    print("--------------------------------------")
     # change instance methode to class method 
     for p in Product.list_all():
         print(p)
 
+    print("--------------------------------------")
+    Product.delete("1")
 
 if __name__ == '__main__':
     # This code won't run if this file is imported.
