@@ -71,10 +71,6 @@ def main():
     # del product_two
 
 
-    # print("--------------------------------------")
-    # for p in Product.list_all():
-    #     print(p)
-
     print("--------------------------------------")
 
     # delete items by id

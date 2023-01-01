@@ -56,7 +56,7 @@ class Product():
                 cls._product_list[id] = list(updated_values)
         print(cls._product_list)
 
-    #this method shall be able to remove the product
+    #this method be able to remove the product
     @classmethod
     def delete(cls, id):
         for dict in cls._product_list:
@@ -65,18 +65,12 @@ class Product():
                return cls._product_list
         print("there is no item with these id")
 
-    #shall I get all products with staticmethod ? any better solution ? what about a class method ?
-    # what is the diffrence ?
-    # shall I seprate the datastructe from the class ? why? who? any better solution?
-    @staticmethod
-    def list_all(): 
-        items = []
-        if Product._product_list != None:
-            for dict in Product._product_list:
-                items.append(dict)
-            return items
-        print("there is nothing in product_list")
-
+    #list all items
+    @classmethod
+    def list_all(cls): 
+        if cls._product_list:
+            return cls._product_list
+        print("_product_list is empty!!!")
     
     def __repr__(self) -> str:
         return f"the product with \n\
