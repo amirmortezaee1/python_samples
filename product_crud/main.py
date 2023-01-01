@@ -55,15 +55,19 @@ def main():
         current_unixtimestamp,
         1]
 
-    print(product_one.create("1"))
+    # save items to a list of dictionary,(method input is id) 
+    product_one.create("1")
     product_two.create("2")
     
+    print("--------------------------------------")
+    
+    # read items by id method
+    print(Product.read("2"))
+
     # # delete items of products 
     # del product_one
     # del product_two
 
-    # # read items by id 
-    # print(Product.read("2"))
 
     # print("--------------------------------------")
     # for p in Product.list_all():

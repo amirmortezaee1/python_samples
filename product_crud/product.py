@@ -34,16 +34,17 @@ class Product():
                 price = self.price, regular_price = self.regular_price, sale_price = self.sale_price,
                 manage_stock = self.manage_stock , stock_quantity= self.stock_quantity, is_visible = self.is_visible,
                 date_created_gmt = self.date_created_gmt, date_modified_gmt = self.date_modified_gmt)
-        
+                
         Product._product_list.append(values)
         return Product._product_list
+
     #this method shall be able read a product via id/uuid or ... from the the product datastructure (dictionary,list or maybe database)
     # change instance method to class method
     @classmethod
     def read(cls, id): 
-        for i in Product._product_list:
-            if i == id:
-                return Product._product_list[i]
+        for dict in Product._product_list:
+            if dict["id"] == id:
+                return dict
         print("id not found")
 
     #this method shall be able to update product and amend the data structure for related product
