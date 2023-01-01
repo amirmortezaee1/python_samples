@@ -50,11 +50,14 @@ class Product():
 
     #this method shall be able to update product and amend the data structure for related product
     @classmethod
-    def update(cls, id, updated_values):
+    def update(cls, id, key, value):
         for dict in cls._product_list:
-            if dict == id:
-                cls._product_list[id] = list(updated_values)
-        print(cls._product_list)
+            try:
+                if dict["id"] == id and dict[key]:
+                    dict[key] = value
+                    return
+            except:
+                print("the id or key not exist!!!")
 
     #this method be able to remove the product
     @classmethod

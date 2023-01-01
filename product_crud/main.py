@@ -58,7 +58,11 @@ def main():
     # save items to a list of dictionary,(method input is id) 
     product_one.create("1")
     product_two.create("2")
-    
+  
+    # delete instance of products 
+    del product_one
+    del product_two
+
     print("--------------------------------------")
 
     # read items by id method
@@ -66,9 +70,6 @@ def main():
 
 
 
-    # # delete items of products 
-    # del product_one
-    # del product_two
 
 
     print("--------------------------------------")
@@ -78,11 +79,17 @@ def main():
 
     print("--------------------------------------")
 
+    # update method update(id, key, vallue)
+    # give an id for find the item. and the key that we want to update 
+    # value that change previous value to new one
+    Product.update("2", "title",  "Asus")
+
+    print("--------------------------------------")
+
     # list all of items
     print(Product.list_all())
 
-    # print("--------------------------------------")
-    # Product.update("2", x)
+
 
 if __name__ == '__main__':
     # This code won't run if this file is imported.
