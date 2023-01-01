@@ -60,10 +60,10 @@ def main():
     product_two.create("2")
     
     print("--------------------------------------")
-    
-    # read items by id method
-    print(Product.read("2"))
 
+    # read items by id method
+    # print(Product.read("2"))
+    print(Product.read())
     # # delete items of products 
     # del product_one
     # del product_two

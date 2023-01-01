@@ -25,7 +25,8 @@ class Product():
         self.is_visible = is_visible
         self.date_created_gmt = date_created_gmt
         self.date_modified_gmt = date_modified_gmt
-    
+
+    # create method convert instance attr to dict and save them to _product_list
     def create(self, id):
         self.id = id
         values = dict(id= self.id, category_id = self.category_id, title = self.title,
@@ -34,18 +35,27 @@ class Product():
                 price = self.price, regular_price = self.regular_price, sale_price = self.sale_price,
                 manage_stock = self.manage_stock , stock_quantity= self.stock_quantity, is_visible = self.is_visible,
                 date_created_gmt = self.date_created_gmt, date_modified_gmt = self.date_modified_gmt)
-                
+
         Product._product_list.append(values)
         return Product._product_list
 
-    #this method shall be able read a product via id/uuid or ... from the the product datastructure (dictionary,list or maybe database)
-    # change instance method to class method
+    # read _product_list dicts with id 
     @classmethod
     def read(cls, id): 
         for dict in Product._product_list:
             if dict["id"] == id:
                 return dict
         print("id not found")
+
+    # read all dict in _product_list
+    @classmethod
+    def read(cls): 
+        items = []
+        if Product._product_list != None:
+            for dict in Product._product_list:
+                items.append(dict)
+            return items
+        print("there is nothing in product_list")
 
     #this method shall be able to update product and amend the data structure for related product
     @classmethod
