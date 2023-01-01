@@ -62,8 +62,10 @@ def main():
     print("--------------------------------------")
 
     # read items by id method
-    # print(Product.read("2"))
-    print(Product.read())
+    print(Product.read("2"))
+
+
+
     # # delete items of products 
     # del product_one
     # del product_two
@@ -73,8 +75,15 @@ def main():
     # for p in Product.list_all():
     #     print(p)
 
-    # print("--------------------------------------")
-    # Product.delete("1")
+    print("--------------------------------------")
+
+    # delete items by id
+    print(Product.delete("1"))
+
+    print("--------------------------------------")
+
+    # list all of items
+    print(Product.list_all())
 
     # print("--------------------------------------")
     # Product.update("2", x)

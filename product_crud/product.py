@@ -42,14 +42,34 @@ class Product():
     # read _product_list dicts with id 
     @classmethod
     def read(cls, id): 
-        for dict in Product._product_list:
+        for dict in cls._product_list:
             if dict["id"] == id:
                 return dict
         print("id not found")
 
-    # read all dict in _product_list
+
+    #this method shall be able to update product and amend the data structure for related product
     @classmethod
-    def read(cls): 
+    def update(cls, id, updated_values):
+        for dict in cls._product_list:
+            if dict == id:
+                cls._product_list[id] = list(updated_values)
+        print(cls._product_list)
+
+    #this method shall be able to remove the product
+    @classmethod
+    def delete(cls, id):
+        for dict in cls._product_list:
+            if dict["id"] == id:
+               cls._product_list.remove(dict)
+               return cls._product_list
+        print("there is no item with these id")
+
+    #shall I get all products with staticmethod ? any better solution ? what about a class method ?
+    # what is the diffrence ?
+    # shall I seprate the datastructe from the class ? why? who? any better solution?
+    @staticmethod
+    def list_all(): 
         items = []
         if Product._product_list != None:
             for dict in Product._product_list:
@@ -57,32 +77,6 @@ class Product():
             return items
         print("there is nothing in product_list")
 
-    #this method shall be able to update product and amend the data structure for related product
-    @classmethod
-    def update(cls, id, updated_values):
-        for key in list(Product._product_list.keys()):
-            if key == id:
-                Product._product_list[id] = list(updated_values)
-        print(Product._product_list)
-
-    #this method shall be able to remove the product
-    @classmethod
-    def delete(cls, id):
-        for key in list(Product._product_list.keys()):
-            if key == id:
-                del Product._product_list[id]
-        print(Product._product_list)
-
-    #shall I get all products with staticmethod ? any better solution ? what about a class method ?
-    # what is the diffrence ?
-    # shall I seprate the datastructe from the class ? why? who? any better solution?
-    @staticmethod
-    def list_all():
-        return tuple(Product._product_list.values())
-
-    @staticmethod
-    def list_all_id():
-        return tuple(Product._product_list.keys())
     
     def __repr__(self) -> str:
         return f"the product with \n\
