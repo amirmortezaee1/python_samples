@@ -4,7 +4,6 @@ from circle import Circle
 
 def main():
     print('Hello World')
-    
 
     mycircle = Circle(8)
 
@@ -41,22 +40,7 @@ def main():
         current_unixtimestamp,
         1)
 
-    product_three = Product('Lenovo T530',
-        'Lenovo 530',
-        'some long descrition',
-        'thinkbook-530',
-        'https://www.lenovo.com/gb/en/p/laptops/thinkbook/530',
-        'X394UB83NJ',
-        689.95,
-        549.95,
-        0,
-        False,
-        8,
-        current_unixtimestamp,
-        current_unixtimestamp,
-        1)
-    
-    x = ['Lenovo T410s',
+    x = ['Asus T410s',
         'Lenovo ThinkPad T410s Core i5 M560 2.66GHz 4GB RAM, WIN 10 14" AC ADAPTER',
         'The T410s provides a good companion for office use, that is well suited for business trips thanks to its 14.1 inch size and light weight.',
         'thinkbook-13x-gen-2-(13-inch-intel)',
@@ -71,28 +55,25 @@ def main():
         current_unixtimestamp,
         1]
 
-    product_one.create("1")
+    print(product_one.create("1"))
     product_two.create("2")
-    product_three.create("3")
     
-    # delete items of products 
-    del product_one
-    del product_two
+    # # delete items of products 
+    # del product_one
+    # del product_two
 
-    # read items by id 
-    print(Product.read("2"))
+    # # read items by id 
+    # print(Product.read("2"))
 
-    print("--------------------------------------")
-    Product.update("2", x)
+    # print("--------------------------------------")
+    # for p in Product.list_all():
+    #     print(p)
 
-    print("--------------------------------------")
-    # change instance methode to class method 
-    for p in Product.list_all():
-        print(p)
+    # print("--------------------------------------")
+    # Product.delete("1")
 
-    print("--------------------------------------")
-    Product.delete("1")
-
+    # print("--------------------------------------")
+    # Product.update("2", x)
 
 if __name__ == '__main__':
     # This code won't run if this file is imported.

@@ -2,7 +2,7 @@ from datetime import datetime
 
 class Product():
 
-    _product_list = {}
+    _product_list = []
 
     def __init__(self, title:str, short_description:str , description:str  , slug:str, permalink:str, sku:str, price:float, regular_price:float,
                  sale_price:float, manage_stock:bool, stock_quantity:int, date_created_gmt :int, date_modified_gmt:int,category_id:int = 0, 
@@ -27,9 +27,16 @@ class Product():
         self.date_modified_gmt = date_modified_gmt
     
     def create(self, id):
-        self._product_list[id] = self
-        return self.__repr__()
-
+        self.id = id
+        values = dict(id= self.id, category_id = self.category_id, title = self.title,
+                short_description= self.short_description, description = self.description, slug = self.slug,
+                permalink = self.permalink, is_available = self.is_available, sku= self.sku,
+                price = self.price, regular_price = self.regular_price, sale_price = self.sale_price,
+                manage_stock = self.manage_stock , stock_quantity= self.stock_quantity, is_visible = self.is_visible,
+                date_created_gmt = self.date_created_gmt, date_modified_gmt = self.date_modified_gmt)
+        
+        Product._product_list.append(values)
+        return Product._product_list
     #this method shall be able read a product via id/uuid or ... from the the product datastructure (dictionary,list or maybe database)
     # change instance method to class method
     @classmethod
@@ -44,7 +51,7 @@ class Product():
     def update(cls, id, updated_values):
         for key in list(Product._product_list.keys()):
             if key == id:
-                Product._product_list[id] = updated_values
+                Product._product_list[id] = list(updated_values)
         print(Product._product_list)
 
     #this method shall be able to remove the product
@@ -65,8 +72,7 @@ class Product():
     @staticmethod
     def list_all_id():
         return tuple(Product._product_list.keys())
-
-
+    
     def __repr__(self) -> str:
         return f"the product with \n\
         Product Id: N/A \n\
