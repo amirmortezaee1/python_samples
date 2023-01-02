@@ -55,6 +55,14 @@ def main():
         current_unixtimestamp,
         1]
 
+    # key = ["id" ,"category_id", "title", "short_description", "description", "slug", "permalink", "is_available", "sku", "price", "regular_price", "sale_price", 
+        # "sale_price", "manage_stock", "is_available", "is_visible", "date_created_gmt", "date_modified_gmt"]
+    update_items= {'id': '2', 'category_id': 14, 'title': 'Asus', 'short_description': 'Lenovo 530',
+     'description': 'some long descrition', 'slug': 'thinkbook-530',
+      'permalink': 'https://www.lenovo.com/gb/en/p/laptops/thinkbook/530', 'is_available': False, 'sku': 'X394UB83NJ'
+      , 'price': 689.95, 'regular_price': 549.95, 'sale_price': 0, 'manage_stock': False, 'stock_quantity': 8,
+       'is_visible': True, 'date_created_gmt': 1672646902, 'date_modified_gmt': 1672646902}
+
     # save items to a list of dictionary,(method input is id) 
     product_one.create("1")
     product_two.create("2")
@@ -68,10 +76,6 @@ def main():
     # read items by id method
     print(Product.read("2"))
 
-
-
-
-
     print("--------------------------------------")
 
     # delete items by id
@@ -82,7 +86,12 @@ def main():
     # update method update(id, key, vallue)
     # give an id for find the item. and the key that we want to update 
     # value that change previous value to new one
-    Product.update("2", "title",  "Asus")
+    Product.update_one_item("2", "title",  "Asus")
+
+    # thid class method give id for first argument
+    # and for second argument give dictionary
+    # this method update all items 
+    Product.update_all_item("2", update_items)
 
     print("--------------------------------------")
 

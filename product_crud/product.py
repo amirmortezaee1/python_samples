@@ -50,7 +50,7 @@ class Product():
 
     #this method shall be able to update product and amend the data structure for related product
     @classmethod
-    def update(cls, id, key, value):
+    def update_one_item(cls, id, key, value):
         for dict in cls._product_list:
             try:
                 if dict["id"] == id and dict[key]:
@@ -59,7 +59,19 @@ class Product():
             except:
                 print("the id or key not exist!!!")
 
-    #this method be able to remove the product
+    # this method update all item with given dictionary
+    @classmethod
+    def update_all_item(cls, id, item_dict={}):
+        for dict in cls._product_list:
+            if dict["id"] == id:
+                keys = list(item_dict.keys())
+                for key in keys:
+                    if dict[key]:
+                       dict[key] = item_dict[key]
+                return           
+        print("id not found")
+
+    # this method delete items by id       
     @classmethod
     def delete(cls, id):
         for dict in cls._product_list:
