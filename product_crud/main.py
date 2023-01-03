@@ -60,16 +60,16 @@ def main():
     # del product_one
     # del product_two
     
-    print(Product._product_list)
+    print(Product.memorydb._product_list)
     
     
     for p in Product.list_all():
         print(p)
         
     
-    product_one.update({'title': 'lenovo 330'})
+    product_two.update({'title': 'lenovo 330'})
     
-    print(Product.read(1000))
+    print(Product.read(1001))
 
 if __name__ == '__main__':
     # This code won't run if this file is imported.

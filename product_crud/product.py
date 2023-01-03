@@ -1,8 +1,9 @@
 from datetime import datetime
+from product_inmemory_db import ProductInMemoryDb
 
-class Product():
+class Product:
 
-    _product_list = []
+    memorydb = ProductInMemoryDb() 
     
 
     def __init__(self, title:str, short_description:str , description:str  , slug:str, permalink:str, sku:str, price:float, regular_price:float,
@@ -30,39 +31,47 @@ class Product():
 
     def create(self, id:int):
         self.id = id
-        product = {'id': self.id, 'product':self}
-        self._product_list.append(product)
+        self.memorydb._product_list.append(dict({'obj':self, 'id':self.id,'category_id':self.category_id,'tittle':self.title,
+                                        'short_description':self.short_description,'description':self.description,
+                                        'slug':self.slug,'permalink':self.permalink,'is_available':self.is_available,
+                                        'sku':self.sku,'price':self.price,'regular_price':self.regular_price,'sale_price':self.sale_price,
+                                        'manage_stock':self.manage_stock,'stock_quantity':self.stock_quantity, 'is_visible':self.is_visible,
+                                        'data_cretaed_modified':self.date_created_gmt,'data_modified_gmt':self.date_created_gmt}))
         return self.__repr__()
 
-    
-    
     @classmethod
     def read(cls, id:int):
-        for i in cls._product_list:
+        for i in cls.memorydb._product_list:
             if i['id'] == id:
-                return i['product'].__repr__()
+                return i['obj'].__repr__()
         return f"this id '{id}' does not exist"
 
     
     def update(self, new_attr):
-        for key, value in new_attr.items():
-            if key in self.__dict__:
-                setattr(self, key, value) 
-            
-                 
-
-    
-    @classmethod
-    def delete(cls, id):
-        for i in cls._product_list:
-            if i['id'] == id:
-                cls._product_list.remove(i)
+        # for key, value in new_attr.items():
+        #     if key in self.__dict__:
+        #         setattr(self, key, value)
+        for product in self.memorydb._product_list:
+            if product['id'] == self.id:
+                for key, value in new_attr.items():
+                    if key in self.__dict__:
+                        setattr(self, key, value)
+                        product[key] = value
                 return 'Done'
+        return 'This obj does not exist'
+        
+    @staticmethod
+    def delete(id:int):
+        for product in Product.memorydb._product_list:
+            if product['id'] == id:
+                Product.memorydb._product_list.remove(product)
+                return 'Done'
+        return f"this id '{id}' does not exist"
 
 
     @classmethod
     def list_all(cls):
-        return tuple(cls._product_list)
+        return cls.memorydb._product_list
     
     def __del__(self):
         pass
