@@ -1,6 +1,7 @@
 from datetime import datetime
 import uuid
 from product_inmemory_db import ProductInMemoryDb
+
 class Product():
 
     def __init__(self, title:str, short_description:str , description:str  , slug:str, permalink:str, sku:str, price:float, regular_price:float,
@@ -59,13 +60,14 @@ class Product():
         for item in ProductInMemoryDb.product_list:
             if item['id']== id :
                 ProductInMemoryDb.product_list.remove(item)
-                
+
     #shall I get all products with staticmethod ? any better solution ? what about a class method ?
     # what is the diffrence ?
     # shall I seprate the datastructe from the class ? why? who? any better solution?
     #@staticmethod
     def list_all(self):
-        return tuple(Product._product_list.keys())
+        for item in ProductInMemoryDb.product_list:
+            return tuple(item.key())
 
     def __repr__(self) -> str:
         return f"the product with \n\
