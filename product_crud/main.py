@@ -48,28 +48,19 @@ def main():
 
     # product_one.delete(1000)
     
-    print(Product.read(1000))
+    print(product_one.read(1000))
     
     
-    print("-------------------------------------")
-    print("Does Product one instance of <<Circle>> class?")
-    print(isinstance(product_one, Circle))
-    print("Does Product one instance of <<Product>> class?")
-    print(isinstance(product_one, Product))
+    print("-------------------------------------"*10)
+    # print("Does Product one instance of <<Circle>> class?")
+    # print(isinstance(product_one, Circle))
+    # print("Does Product one instance of <<Product>> class?")
+    # print(isinstance(product_one, Product))
 
-    # del product_one
-    # del product_two
+
+    product_two.update({'tittle': 'lenovo 330'})
     
-    print(Product.memorydb._product_list)
-    
-    
-    for p in Product.list_all():
-        print(p)
-        
-    
-    product_two.update({'title': 'lenovo 330'})
-    
-    print(Product.read(1001))
+    print(product_two.read(1001))
 
 if __name__ == '__main__':
     # This code won't run if this file is imported.
