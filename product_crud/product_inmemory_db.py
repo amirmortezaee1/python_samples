@@ -13,7 +13,7 @@ class ProductInMemoryDb:
         for product in self.__product_list:
             if product['id'] == id:
                 return product
-        return f"This id '{id}' diew not exist"
+        return f"This id '{id}' does not exist"
     
     def update(self, id, new_attr):
         for product in self.__product_list:
@@ -29,7 +29,7 @@ class ProductInMemoryDb:
             if product['id'] == id:
                 self.__product_list.remove(product)
                 return 'Done'
-        return f"this is '{id}' des not exist"
+        return f"this is '{id}' does not exist"
     
     
     def list_all(self):
