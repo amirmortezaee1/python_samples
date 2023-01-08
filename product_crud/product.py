@@ -1,8 +1,7 @@
 from datetime import datetime
+from product_inmemory_db import ProductInMemoryDb
 
 class Product():
-
-    _product_list = []
 
     def __init__(self, title:str, short_description:str , description:str  , slug:str, permalink:str, sku:str, price:float, regular_price:float,
                  sale_price:float, manage_stock:bool, stock_quantity:int, date_created_gmt :int, date_modified_gmt:int,category_id:int = 0, 
@@ -26,6 +25,9 @@ class Product():
         self.date_created_gmt = date_created_gmt
         self.date_modified_gmt = date_modified_gmt
 
+        self.db = ProductInMemoryDb()
+
+        
     # create method convert instance attr to dict and save them to _product_list
     def create(self, id):
         self.id = id
@@ -35,57 +37,22 @@ class Product():
                 price = self.price, regular_price = self.regular_price, sale_price = self.sale_price,
                 manage_stock = self.manage_stock , stock_quantity= self.stock_quantity, is_visible = self.is_visible,
                 date_created_gmt = self.date_created_gmt, date_modified_gmt = self.date_modified_gmt)
+        self.db.insert(values)
 
-        Product._product_list.append(values)
-        return Product._product_list
+    def read(self, id): 
+       return self.db.read(id)
 
-    # read _product_list dicts with id 
-    @classmethod
-    def read(cls, id): 
-        for dict in cls._product_list:
-            if dict["id"] == id:
-                return dict
-        print("id not found")
+    def update(self, new_attr):
+        for key, value in new_attr.items():
+            if key in self.__dict__:
+                setattr(self, key, value)
+        return self.db.update(self.id, new_attr)
+     
+    def delete(self, id):
+        return self.db.delete(id)
 
-
-    #this method shall be able to update product and amend the data structure for related product
-    @classmethod
-    def update_one_item(cls, id, key, value):
-        for dict in cls._product_list:
-            try:
-                if dict["id"] == id and dict[key]:
-                    dict[key] = value
-                    return
-            except:
-                print("the id or key not exist!!!")
-
-    # this method update all item with given dictionary
-    @classmethod
-    def update_all_item(cls, id, item_dict={}):
-        for dict in cls._product_list:
-            if dict["id"] == id:
-                keys = list(item_dict.keys())
-                for key in keys:
-                    if dict[key]:
-                       dict[key] = item_dict[key]
-                return           
-        print("id not found")
-
-    # this method delete items by id       
-    @classmethod
-    def delete(cls, id):
-        for dict in cls._product_list:
-            if dict["id"] == id:
-               cls._product_list.remove(dict)
-               return cls._product_list
-        print("there is no item with these id")
-
-    #list all items
-    @classmethod
-    def list_all(cls): 
-        if cls._product_list:
-            return cls._product_list
-        print("_product_list is empty!!!")
+    def show_all(self): 
+        return self.db.show_all()
     
     def __repr__(self) -> str:
         return f"the product with \n\
