@@ -25,7 +25,6 @@ class Product():
         self.is_visible = is_visible
         self.date_created_gmt = date_created_gmt
         self.date_modified_gmt = date_modified_gmt
-       
 
     def create(self,id:int):
         {'id':{self.id}, 'Title': {self.title},
@@ -55,11 +54,14 @@ class Product():
         if item['id']== id:
             item.__init__(**attributes)
             return attributes
+        print('item updated')
+
     #this method shall be able to remove the product
     def delete(self,id:int):
         for item in ProductInMemoryDb.product_list:
             if item['id']== id :
                 ProductInMemoryDb.product_list.remove(item)
+                print('item succssesfully deleted')
 
     #shall I get all products with staticmethod ? any better solution ? what about a class method ?
     # what is the diffrence ?
@@ -67,7 +69,7 @@ class Product():
     #@staticmethod
     def list_all(self):
         for item in ProductInMemoryDb.product_list:
-            return tuple(item.key())
+            print(item)
 
     def __repr__(self) -> str:
         return f"the product with \n\

@@ -1,6 +1,12 @@
 import datetime
 from product import Product
 from circle import Circle
+from product_inmemory_db import ProductInMemoryDb
+from product_injson_db import JsonDict
+
+#instances
+productdb=ProductInMemoryDb()
+productjson=JsonDict('product_json.json') 
 
 def main():
     print('Hello World')
@@ -40,13 +46,30 @@ def main():
         current_unixtimestamp,
         current_unixtimestamp,
         1)
- 
-    product_one.create()
-    product_two.create()
+    
+    product_three= Product('mac T530',
+        'mac 530',
+        'some long descrition',
+        'thinkbook-530',
+        'https://www.lenovo.com/gb/en/p/laptops/thinkbook/530',
+        'X394UB83NJ',
+        689.95,
+        549.95,
+        0,
+        False,
+        8,
+        current_unixtimestamp,
+        current_unixtimestamp,
+        1)
 
-    for p in product_one.list_all():
-        print(p)
-
+   
+    product_one.create(1)
+    product_two.create(2)
+    product_three.create(3)
+    productdb.add({'name':'sara','age':27})
+    print(ProductInMemoryDb.product_list)
+    productjson.add_dict_to_json_file({'name':'sara','age':27})
+    product_one.list_all()
     print("-------------------------------------")
     print("Does Product one instance of <<Circle>> class?")
     #print(isinstance(product_one, Circle))
@@ -56,6 +79,4 @@ def main():
 if __name__ == '__main__':
     # This code won't run if this file is imported.
     main()
-
-
 
