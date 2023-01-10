@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import json
 
 class JsonDict:
@@ -48,3 +49,6 @@ class JsonDict:
 
         with open(self.file_path,'w') as f:
             json.dump(items,f)
+=======
+
+>>>>>>> main
