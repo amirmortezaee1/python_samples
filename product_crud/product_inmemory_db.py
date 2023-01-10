@@ -12,7 +12,7 @@ class ProductInMemoryDb:
     def update(cls,dict):
         for item in cls.product_list:
             if item['id']==id:
-                ProductInMemoryDb.product_list.insert(dict,id)
+                item.update(dict)
                 return item
     @classmethod
     def find_by_id(cls,id:int):

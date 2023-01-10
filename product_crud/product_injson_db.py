@@ -1,20 +1,21 @@
 import json
 
 class JsonDict:
-    product_list_json=[]
 
     def __init__(self, file_path):
+        
         self.file_path = file_path
 
-
-    def add_dict_to_json_file(self,dict):
-        self.product_list_json.append(dict)
-
+    def add(self,dict):
+        with open (self.file_path, 'r') as f :
+            items=list(json.load(f))
+            items.append(dict)
+    
         with open(self.file_path, 'w') as f:
-            json.dump(self.product_list_json,f)
+            json.dump(items,f)
 
 
-    def update_json(self,dict,id:int):
+    def update(self,dict,id:int):
         with open (self.file_path,'r') as f:
             items=list(json.load(f))
             for item in items:
@@ -25,7 +26,7 @@ class JsonDict:
         with open (self.file_path, 'w') as f:
             json.dump(items,f)
 
-    def read_json(self):
+    def read(self):
         with open (self.file_path,'r') as f :
             items=json.load(f)
             for item in items :
@@ -38,7 +39,7 @@ class JsonDict:
                 if item['id']== id:
                     return item
 
-    def delete_json(self,id:int):
+    def remove(self,id:int):
         with open (self.file_path, 'r') as f:
             items=list(json.load(f))
             for item in items :
