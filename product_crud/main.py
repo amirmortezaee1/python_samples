@@ -6,7 +6,7 @@ from product_injson_db import JsonDict
 
 #instances
 productdb=ProductInMemoryDb()
-productjson=JsonDict('product_json.json') 
+productjson=JsonDict('./product_crud/product_json.json') 
 
 def main():
     print('Hello World')
@@ -66,10 +66,16 @@ def main():
     product_one.create(1)
     product_two.create(2)
     product_three.create(3)
-    productdb.add({'name':'sara','age':27})
+    productdb.add({'name':'sara','age':17})
     print(ProductInMemoryDb.product_list)
-    productjson.add_dict_to_json_file({'name':'sara','age':27})
-    product_one.list_all()
+    productjson.add_dict_to_json_file({'id':1,'name':'saba','age':17})
+    productjson.add_dict_to_json_file({'id':2,'name':'sara','age':27})
+    productjson.add_dict_to_json_file({'id':3,'name':'shiva','age':51})
+    productjson.update_json(1,{'name':'sheida','age':47})
+    productjson.read_json()
+    productjson.find_by_id(3)
+    #productjson.delete_json(2)
+    #product_one.list_all()
     print("-------------------------------------")
     print("Does Product one instance of <<Circle>> class?")
     #print(isinstance(product_one, Circle))
