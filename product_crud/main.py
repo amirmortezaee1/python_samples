@@ -71,6 +71,7 @@ def main():
     productjson.add({'id':1,'name':'saba','age':17})
     productjson.add({'id':2,'name':'sara','age':27})
     productjson.add({'id':3,'name':'shiva','age':51})
+    productjson.add({'id':4,'name':'shiva','age':53})
     productjson.update(1,{'name':'sheida','age':47})
     productjson.read()
     productjson.find_by_id(3)
